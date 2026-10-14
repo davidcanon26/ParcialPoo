@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.gestordecontactos;
+package Main;
+
+import vista.VistaContactos;
 
 /**
  *
@@ -11,6 +13,6 @@ package com.mycompany.gestordecontactos;
 public class GestorContactos {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        java.awt.EventQueue.invokeLater(() -> new VistaContactos().setVisible(true));
     }
 }
