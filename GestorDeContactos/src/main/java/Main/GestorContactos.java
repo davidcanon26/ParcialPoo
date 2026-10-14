@@ -4,6 +4,8 @@
 
 package Main;
 
+import vista.VistaContactos;
+
 /**
  *
  * @author Usuario
@@ -11,6 +13,6 @@ package Main;
 public class GestorContactos {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        java.awt.EventQueue.invokeLater(() -> new VistaContactos().setVisible(true));
     }
 }
