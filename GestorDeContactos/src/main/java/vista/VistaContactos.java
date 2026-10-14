@@ -102,6 +102,7 @@ public class VistaContactos extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
