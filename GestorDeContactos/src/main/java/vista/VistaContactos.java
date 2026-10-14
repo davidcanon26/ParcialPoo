@@ -5,6 +5,7 @@
 package vista;
 import javax.swing.JOptionPane;
 import modelo.*;
+import Controlador.*;
 /**
  *
  * @author Usuario
@@ -16,8 +17,10 @@ public class VistaContactos extends javax.swing.JFrame {
     /**
      * Creates new form VistaContactos
      */
+    private ControladorContactos controlador;
     public VistaContactos() {
         initComponents();
+        controlador = new ControladorContactos(this);
     }
 
     /**
@@ -51,6 +54,7 @@ public class VistaContactos extends javax.swing.JFrame {
         jLabel3.setText("Buscar nombre");
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(this::btnBuscarActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,8 +106,35 @@ public class VistaContactos extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        
+        String nombre = txtNombre.getText().trim().toLowerCase();
+        String cel = txtTelefono.getText().trim();
+        if (nombre.isEmpty()|| cel.isEmpty()) {
+            JOptionPane.showMessageDialog(
+                this,
+                "Debes ingresar el nombre y el teléfono",
+                "Campos vacíos",
+                JOptionPane.ERROR_MESSAGE
+        );
+        return;
+        }
+        boolean agregar = controlador.agregarContacto(nombre, cel);
+        if(agregar==true){
+            JOptionPane.showMessageDialog(this,"Contacto registrado existosamente");
+        }
+        else{
+            JOptionPane.showMessageDialog(this,"No se pueden registrar contactos con el mismo nombre",
+                    "error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        String BuNombre= txtBuscarNombre.getText().trim().toLowerCase();
+        String telef = controlador.buscarTelefono(BuNombre);
+        String mensaje = String.format("Telefono: %s ",telef);
+        lblResultado.setText(mensaje);
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
